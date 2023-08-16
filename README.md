@@ -1,5 +1,24 @@
 # Comparison of Machine Learning Prediction Models to acheive best model for the problem.
 Compared performance of different ML algorithms in both classification and regression tasks using scikit-learn framewok. The classification performance was evaluated by area under ROC and PR curves, the regression by MSE and R2 scores.
+
+### Usage
+#### Clone
+
+1. Clone this repo to your local machine using 
+```shell 
+$ git clone https://github.com/printROSHN/Comaprison_Of_ML_Models_Regression_and_Classification.git 
+```
+#### Setup
+
+1. Install the packages using pip
+```shell
+$ pip install -r requirements.txt
+```
+2. Run the main.py file
+```shell
+$ python main.py
+```
+
 ## Classification
 
 ### Dataset
