@@ -44,7 +44,7 @@ def train_SVR(X_train, y_train):
 #         'epsilon' : scipy.stats.uniform(0.1, 0.5),
 #         'gamma' : scipy.stats.reciprocal(0.01, 0.1),
     }
-    randcv = RandomizedSearchCV(svr,param_distributions,n_iter=20,cv=3,n_jobs=1,random_state=0)
+    randcv = RandomizedSearchCV(svr,param_distributions,n_iter=20,cv=3,n_jobs=-1,random_state=0)
     randcv.fit(X_train, y_train)
     return randcv
 
@@ -54,7 +54,7 @@ def train_DecisionTree(X_train, y_train):
     param_distributions = {
         'max_depth' : scipy.stats.randint(10,100)
     }
-    randcv = sklearn.model_selection.RandomizedSearchCV(tree,param_distributions,n_iter=30,cv=3,n_jobs=1,random_state=0)
+    randcv = sklearn.model_selection.RandomizedSearchCV(tree,param_distributions,n_iter=30,cv=3,n_jobs=-1,random_state=0)
     randcv.fit(X_train, y_train)
     return randcv
 
