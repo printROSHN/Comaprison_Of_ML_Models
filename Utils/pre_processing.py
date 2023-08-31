@@ -73,12 +73,12 @@ def impute_value(x_train, x_test, strategy):
     else:
         imp = SimpleImputer(missing_values=np.nan, strategy=strategy)
         train_type_dic = dict()#keep original train data type before impute
-        for i,t in enumerate(x_train.dtypes):
-            if t != 'object':
+        for i,t in enumerate(x_train.columns):
+            if x_train[t].dtypes != 'object':
                 train_type_dic[i] = t
         test_type_dic = dict()#keep original test data type before impute
-        for i,t in enumerate(x_test.dtypes):
-            if t != 'object':
+        for i,t in enumerate(x_test.columns):
+            if x_test[t].dtypes != 'object':
                 test_type_dic[i] = t
         x_train = pd.DataFrame(imp.fit_transform(x_train))
         x_test = pd.DataFrame(imp.transform(x_test))

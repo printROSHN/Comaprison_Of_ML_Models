@@ -24,7 +24,7 @@ from sklearn.metrics import *
 DATA_PATH = 'dataset/'
 IMAGE_PATH = 'img/'
 
-def plot_all(X_test, y_test, all_clfs, clf_names, file_name):
+def plot_all_clas(X_test, y_test, all_clfs, clf_names, file_name):
     plt.figure(figsize=(16,8))
     plt.suptitle("Dataset: %s"%file_name, size=16)
     plt.subplot(121)

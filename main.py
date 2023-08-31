@@ -6,6 +6,7 @@ from classification.clas import *
 from Utils.clas_plot import *
 import os
 
+import encoding
 import random
 import scipy
 from scipy.io import arff
@@ -14,6 +15,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 # import scikitplot as skplt
 import sklearn
+
 
 DATA_PATH = 'dataset/'
 IMAGE_PATH = 'img/'
@@ -83,19 +85,27 @@ def main():
         model_type = "regression"
         train_file = input("Enter the path to the train dataset file: ")
         #test_file = input("Enter the path to the test dataset file: ")
-        target = input("Enter the target column name: ")
+
+        target_col = input("Enter the target column name: ")
         file_name = os.path.split(train_file)[-1]
         print(file_name)
+        df = pd.read_csv(train_file, sep=None, engine='python')
 
-        X_train, y_train, X_test, y_test = load_split_train_data(train_file, target)
+        enc_file = encoding.encode(df,target_col)
+        print(enc_file.head())
+        #enc_file = df.drop(columns=[target_col])  # Replace 'target_column' with the actual column name
+        target = enc_file[target_col]
+        print(enc_file.shape)
+        X_train, X_test, y_train, y_test = train_test_split(enc_file, target, random_state=0, test_size=0.2)
+        print(X_train.shape, y_train.shape, X_test.shape, y_test.shape)
         
-        X_train, X_test = encode_labels(X_train,X_test)
+        #X_train, X_test = encoding.encode(X_train,X_test)
         X_train, X_test = impute_value(X_train, X_test,'mean')
         X_train, X_test = normalize_data(X_train, X_test)
         X_train, X_test = dimension_reduction(X_train, X_test, n_components=15)
         
         all_regrs, regr_names = run_all_regrs(X_train, y_train, X_test, y_test)
-        mse, r2 = plot_all(X_train, y_train, X_test, y_test, all_regrs, regr_names, file_name)
+        mse, r2 = plot_all_rg(X_train, y_train, X_test, y_test, all_regrs, regr_names, file_name)
         
         for k,v in mse.items():
             if k not in mse_scores:

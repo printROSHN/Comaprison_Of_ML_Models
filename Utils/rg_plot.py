@@ -83,7 +83,7 @@ def plot_r2_score(X_train, y_train, X_test, y_test, all_regrs, regr_names, ax):
     ax.yaxis.tick_right()
     return r2_scores
 
-def plot_all(X_train, y_train, X_test, y_test, all_regrs, regr_names, file_name):
+def plot_all_rg(X_train, y_train, X_test, y_test, all_regrs, regr_names, file_name):
     plt.figure(figsize=(18,8))
     plt.suptitle("Dataset: %s"%file_name, size=16)
     ax1 = plt.subplot(121)
