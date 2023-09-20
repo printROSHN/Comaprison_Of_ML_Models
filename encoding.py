@@ -17,6 +17,7 @@ from category_encoders.leave_one_out import LeaveOneOutEncoder
 from category_encoders.binary import BinaryEncoder
 from sklearn.model_selection import StratifiedKFold, RepeatedStratifiedKFold
 from scipy.stats import spearmanr
+from sklearn.preprocessing import LabelEncoder
 import scipy.sparse as sp
 
 def get_single_encoder(encoder_name: str, cat_cols: list):
@@ -26,6 +27,9 @@ def get_single_encoder(encoder_name: str, cat_cols: list):
     :param cat_cols: Cat columns for encoding
     :return: Categorical encoder
     """
+    if encoder_name == "LabelEncoder":
+        encoder = LabelEncoder()
+
     if encoder_name == "BinaryEncoder":
         encoder = BinaryEncoder(cols=cat_cols)
 
@@ -300,9 +304,8 @@ def encode(data,target):
     #target = input("\nEnter Target Column = ")
 
     # Separate categorical and target variables
-
-    non_target_data = data.drop(target, axis=1)
     target_col_data = data[target]
+    non_target_data = data.drop(target, axis=1)
 
     #TODO : Apply enconding to target to make it numeric
     #^ Applying Ordianl Encoding
@@ -421,7 +424,7 @@ def encode(data,target):
         memory_check = estimate_sparse_matrix_memory_usage(high_cardinality_col, nominal_data[high_cardinality_col])
         print("\n\nCalculating estimate sparse matrix memory usage....... ")
         print("\n\nMEMORY USED = ", memory_check)
-        if(memory_check > 10):
+        if(memory_check > 1):
             handle_overfitting = input("\nDo you want to enter overfiting (high cardinality) (yes/no) = ").lower()
             if(handle_overfitting == "yes"):
                 #* TODO: Apply Leave-one-out Encoding
@@ -464,8 +467,9 @@ def encode(data,target):
 
 
     #& Combine all data for final output
+    print("\n===>", len(merge_list))
     merge_list.append(num_col)
-    result_df = pd.concat(merge_list, axis = 1)
+    result_df = pd.concat(merge_list, axis=1)
     print("\n\nFinal Encoded DataFrame = \n\n",result_df)
 
     return result_df
