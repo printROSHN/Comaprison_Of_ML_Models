@@ -6,7 +6,7 @@ Compared performance of different ML algorithms in both classification and regre
 
 1. Clone this repo to your local machine using 
 ```shell 
-$ git clone https://github.com/printROSHN/Comaprison_Of_ML_Models_Regression_and_Classification.git 
+$ git clone https://github.com/printROSHN/Comaprison_Of_ML_Models.git 
 ```
 #### Setup
 
