@@ -35,14 +35,18 @@ $ python main.py
 10. [Seismic-Bumps](https://archive.ics.uci.edu/ml/datasets/seismic-bumps)
 
 ### Classifier
-1. k-nearest neighbours classification
-2. Support vector classification
-3. Decision tree classification
-4. Random forest classification
-5. AdaBoost classification 
-6. Logistic regression (for classification)
-7. Gaussian naive Bayes classification
-8. Neural network classification
+1. Dummy Classifier
+2. k-nearest neighbours classification
+3. Support vector classification
+4. Decision tree classification
+5. Random forest classification
+6. AdaBoost classification 
+7. Logistic regression (for classification)
+8. Gaussian naive Bayes classification
+9. Neural network classification
+10. Extra trees classification
+11. Xgboost Multiclass classification
+12. Catboost classification
 
 ### Result
 <p float="left">
@@ -83,6 +87,9 @@ $ python main.py
 5. Gaussian process regression
 6. Linear regression
 7. Neural network regression
+8. Extra trees regression
+9. Xgboost regression
+10. Catboost regression
 
 ### Result
 <p float="left">
